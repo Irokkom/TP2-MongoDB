@@ -14,11 +14,11 @@ db = client['tp_nosql']
 users_col = db['utilisateurs']
 
 def run_tp():
-    print("🧹 Nettoyage de la collection (pour éviter les doublons)...")
+    print("Nettoyage de la collection (pour éviter les doublons)...")
     users_col.delete_many({}) # On vide avant de remplir
 
     # --- ÉTAPE 1 : INSERTION DES DONNÉES (Consigne TP) ---
-    print("🚀 Insertion des utilisateurs...")
+    print("Insertion des utilisateurs...")
     
     donnees = [
         {
@@ -45,13 +45,13 @@ def run_tp():
     ]
     
     users_col.insert_many(donnees)
-    print("✅ 3 utilisateurs insérés avec succès !")
+    print("3 utilisateurs insérés avec succès !")
     print("-" * 50)
 
     # --- ÉTAPE 2 : LES REQUÊTES (Consigne TP) ---
 
     # Requête A : Afficher tous les utilisateurs
-    print("🔎 1. Tous les utilisateurs :")
+    print("1. Tous les utilisateurs :")
     tous = users_col.find()
     for u in tous:
         print(f"- {u['prenom']} {u['nom']}")
@@ -59,7 +59,7 @@ def run_tp():
     print("-" * 20)
 
     # Requête B : Âge >= 30 ans ($gte = greater than or equal)
-    print("👴 2. Utilisateurs de 30 ans ou plus :")
+    print("2. Utilisateurs de 30 ans ou plus :")
     vieux = users_col.find({"age": {"$gte": 30}})
     for u in vieux:
         print(f"- {u['prenom']} ({u['age']} ans)")
@@ -67,7 +67,7 @@ def run_tp():
     print("-" * 20)
 
     # Requête C : Rôle Admin
-    print("🛡️ 3. Les Admins :")
+    print("3. Les Admins :")
     admins = users_col.find({"roles": "admin"})
     for u in admins:
         print(f"- {u['prenom']} {u['nom']}")
